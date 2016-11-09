@@ -1,0 +1,59 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>debtree - Package dependency graphs</title>
+</head>
+
+<body>
+<h1>debtree &mdash; package dependency graphs on steroids</h1>
+
+<table>
+<tbody valign="top">
+<tr>
+<td>
+<h3><a href="index.html">Introduction</a></h3>
+
+<h3>Example: aptitude</h3>
+
+<ol start="0">
+<li><a href="aptitude0.html">Graph from apt-cache (for comparison)</a></li>
+<li><b>Basic graph (only hard dependencies and conflicts)</b></li>
+<li><a href="aptitude2.html">Basic graph with Recommends</a></li>
+<li><a href="aptitude3.html">Basic graph with Recommends and Suggests</a></li>
+<li><a href="aptitude4.html">Basic graph with Recommends and showing alternatives</a></li>
+<li><a href="aptitude5.html">Default graph (showing Recommends, alternatives and versions)</a></li>
+<li><a href="aptitude6.html">Default graph with Suggests</a></li>
+<li><a href="aptitude7.html">Default graph with Suggests and versioned Conflicts</a></li>
+<li><a href="aptitude8.html">Default graph (rotated)</a></li>
+</ol>
+<hr />
+
+</td>
+<td width="10" />
+<td width="400">
+
+<p><tt><font size="-1">
+$ debtree --no-recommends --no-alternatives --no-versions aptitude
+</font></tt></p>
+<hr />
+<img src="thumbs/aptitude1.png" alt="Dependency graph for aptitude" />
+<hr />
+<table>
+<tr>
+<td>Generated .dot file:</td>
+<td><a href="aptitude1.dot">DOT</a></td>
+</tr><tr>
+<td>Full-sized images:</td>
+<td><a href="aptitude1.ps" target="_blank">PS</a>&nbsp;|&nbsp;<a href="aptitude1.png" target="_blank">PNG</a>&nbsp;|&nbsp;<a href="aptitude1.svg" target="_blank">SVG</a></td>
+</tr>
+</table>
+<p><font size="-1"><a href="debconf1.html">Equivalent graph for debconf</a></font></p>
+
+</td>
+</tr>
+</tbody>
+</table>
+
+</body>
+</html>

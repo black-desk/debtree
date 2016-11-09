@@ -1,0 +1,104 @@
+digraph "debconf" {
+	rankdir=LR;
+	node [shape=box];
+	"debconf" -> "alt1" [color=blue];
+	"alt1":"debconf-i18n" -> "debconf" [color=blue];
+	"alt1":"debconf-i18n" -> "liblocale-gettext-perl" [color=blue];
+	"liblocale-gettext-perl" -> "perl-base" [color=purple,style=bold,label="(>= 5.10.0-9)"];
+	"perl-base" -> "dpkg" [color=purple,style=bold,label="(>= 1.14.20)"];
+	"perl-base" -> "perl" [style=dotted];
+	"perl-base" -> "autoconf2.13" [color=red,label="(<< 2.13-45)"];
+	"perl-base" -> "findimagedupes" [color=red,label="(<< 2.11-2)"];
+	"perl-base" -> "icheck" [color=red,label="(<< 0.9.7-6.1)"];
+	"perl-base" -> "libcflow-perl" [color=red,label="(<< 1:0.68-11.1)"];
+	"perl-base" -> "libclass-methodmaker-perl" [color=red,label="(<< 2.10-1)"];
+	"perl-base" -> "libclearsilver-perl" [color=red,label="(<< 0.10.4-1.1)"];
+	"perl-base" -> "libcrypt-openssl-bignum-perl" [color=red,label="(<< 0.04-1)"];
+	"perl-base" -> "libcrypt-openssl-dsa-perl" [color=red,label="(<< 0.13-3)"];
+	"perl-base" -> "libcrypt-openssl-random-perl" [color=red,label="(<< 0.04-1)"];
+	"perl-base" -> "libcrypt-openssl-rsa-perl" [color=red,label="(<< 0.25-1)"];
+	"perl-base" -> "libhamlib2-perl" [color=red,label="(<< 1.2.6.2-6)"];
+	"perl-base" -> "libqt-perl" [color=red,label="(<< 3.008-3)"];
+	"perl-base" -> "libscalar-list-utils-perl" [color=red,label="(<< 1:1.18-1)"];
+	"perl-base" -> "libsufary-perl" [color=red,label="(<< 2.1.1-8)"];
+	"perl-base" -> "libsys-cpu-perl" [color=red,label="(<< 0.40-2.1)"];
+	"perl-base" -> "libterm-size-perl" [color=red,label="(<< 0.2-4)"];
+	"perl-base" -> "libvideo-ivtv-perl" [color=red,label="(<< 0.13-6)"];
+	"perl-base" -> "libxsloader-perl" [color=red,label="(<< 0.08-1)"];
+	"perl-base" -> "megahal" [color=red,label="(<< 9.1.1a-5)"];
+	"perl-base" -> "razor" [color=red,label="(<< 1:2.84-6)"];
+	"liblocale-gettext-perl" -> "perlapi-5.10.0" [color=purple,style=bold];
+	"perlapi-5.10.0" -> "perl-base" [dir=back,arrowtail=inv,color=green];
+	"perlapi-5.10.0" [shape=octagon];
+	"alt1":"debconf-i18n" -> "libtext-iconv-perl" [color=blue];
+	"libtext-iconv-perl" -> "perl-base" [color=blue,label="(>= 5.10.0-9)"];
+	"libtext-iconv-perl" -> "perlapi-5.10.0" [color=blue];
+	"alt1":"debconf-i18n" -> "libtext-wrapi18n-perl" [color=blue];
+	"libtext-wrapi18n-perl" -> "libtext-charwidth-perl" [color=blue];
+	"libtext-charwidth-perl" -> "perl-base" [color=blue,label="(>= 5.10.0-9)"];
+	"libtext-charwidth-perl" -> "perlapi-5.10.0" [color=blue];
+	"alt1":"debconf-i18n" -> "libtext-charwidth-perl" [color=blue];
+	"alt1":"debconf-i18n" -> "alt1":"debconf-english" [color=red];
+	"alt1":"debconf-i18n" -> "debconf-utils" [color=red,label="(<< 1.3.22)"];
+	"alt1":"debconf-english" -> "debconf" [color=blue];
+	"alt1":"debconf-english" -> "alt1":"debconf-i18n" [color=red];
+	"debconf" -> "perl-base" [color=purple,style=bold,label="(>= 5.6.1-4)"];
+	"debconf" -> "debconf-doc" [style=dotted];
+	"debconf" -> "debconf-utils" [style=dotted];
+	"debconf" -> "alt2" [style=dotted];
+	"debconf" -> "libterm-readline-gnu-perl" [style=dotted];
+	"debconf" -> "libgnome2-perl" [style=dotted];
+	"debconf" -> "libqt-perl" [style=dotted];
+	"debconf" -> "libnet-ldap-perl" [style=dotted];
+	"debconf" -> "perl" [style=dotted];
+	"debconf" -> "apt-utils" [label="(>= 0.5.1)"];
+	"apt-utils" -> "libapt-pkg-libc6.7-6-4.6" [color=blue];
+	"libapt-pkg-libc6.7-6-4.6" -> "apt" [dir=back,arrowtail=inv,color=green];
+	"libapt-pkg-libc6.7-6-4.6" [shape=octagon];
+	"apt-utils" -> "libdb4.6" [color=blue];
+	"libdb4.6" -> "libdb2" [color=red,label="(<< 2:2.7.7-3)"];
+	"debconf" -> "apt" [color=red,label="(<< 0.3.12.1)"];
+	"debconf" -> "cdebconf" [color=red,label="(<< 0.96)"];
+	"debconf" -> "debconf-tiny" [color=red];
+	"debconf" -> "debconf-utils" [color=red,label="(<< 1.3.22)"];
+	"debconf" -> "alt2":"dialog" [color=red,label="(<< 0.9b-20020814-1)"];
+	"debconf" -> "menu" [color=red,label="(<= 2.1.3-1)"];
+	"debconf" -> "alt2":"whiptail" [color=red,label="(<< 0.51.4-11)"];
+	"debconf" -> "whiptail-utf8" [color=red,label="(<= 0.50.17-13)"];
+	"debconf" -> "debconf-2.0" [arrowhead=inv,color=green];
+	"debconf-2.0" -> virt1 [dir=back,arrowtail=inv,color=green];
+	"debconf-2.0" [shape=octagon];
+	"debconf" [style="setlinewidth(2)"]
+	"debconf-tiny" [style=filled,fillcolor=oldlace];
+	"libdb2" [style=filled,fillcolor=oldlace];
+	"libscalar-list-utils-perl" -> "perl-base" [dir=back,arrowtail=inv,color=green];
+	"libscalar-list-utils-perl" [shape=octagon];
+	"libxsloader-perl" -> "perl-base" [dir=back,arrowtail=inv,color=green];
+	"libxsloader-perl" [shape=octagon];
+	"whiptail-utf8" -> "alt2":"whiptail" [dir=back,arrowtail=inv,color=green];
+	"whiptail-utf8" [shape=octagon];
+	alt1 [
+		shape = "record"
+		label = "<debconf-i18n> debconf-i18n | <debconf-english> debconf-english"
+	]
+	alt2 [
+		shape = "record"
+		label = "<whiptail> \{whiptail\} | <dialog> \{dialog\} | <gnome-utils> \{gnome-utils\}"
+	]
+	virt1 [
+		shape = "record"
+		style = "rounded"
+		label = "<debconf> [debconf] | <cdebconf> [cdebconf]"
+	]
+	"apt" [shape=diamond];
+	"debconf-doc" [shape=diamond];
+	"debconf-utils" [shape=diamond];
+	"dpkg" [shape=diamond];
+	"libgnome2-perl" [shape=diamond];
+	"libnet-ldap-perl" [shape=diamond];
+	"libqt-perl" [shape=diamond];
+	"libterm-readline-gnu-perl" [shape=diamond];
+	"perl" [shape=diamond];
+}
+// Excluded dependencies:
+// libc6 libgcc1 libstdc++6

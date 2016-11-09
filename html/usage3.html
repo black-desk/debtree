@@ -1,0 +1,120 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>debtree - Package dependency graphs</title>
+</head>
+
+<body>
+<h1>debtree &mdash; package dependency graphs on steroids</h1>
+
+<table>
+<tbody valign="top">
+<tr>
+<td>
+<h3><a href="index.html">Introduction</a></h3>
+
+<h3>Advanced usage examples</h3>
+
+<ol>
+<li><a href="usage1.html">Create a build dependency graph</a></li>
+<li><a href="usage2.html">Visualize what would happen when installing a package</a></li>
+<li><b>Dependencies on virtual packages</b></li>
+<li><a href="usage4.html">Reverse dependencies</a></li>
+</ol>
+<hr />
+
+<p>
+The top graph for <tt>pident</tt> incudes three dependencies on virtual
+packages and shows how virtual packages and the packages that provide
+them can be displayed.
+</p><p>
+The first is a fairly common dependency on <tt>debconf | debconf-2.0</tt>
+where the latter is a virtual package provided by either <tt>debconf</tt>
+or <tt>cdebconf</tt>. <tt>debconf</tt> has square brackets because it is
+also included in the alternative dependencies; <tt>cdebconf</tt> has curly
+brackets because its dependencies are not included anywhere in the graph.
+</p><p>
+The second is the virtual package <tt>inet-superserver</tt>. Because the
+maximum number of providers was set to 5 and there are 4 packages that
+actually provide this virtual package, all providing packages are shown.
+<tt>openbsd-inetd</tt> has square brackets because it was also displayed
+as the preferred alternative; for the others no dependencies are shown
+and thus their names have curly brackets.
+</p><p>
+The third is the virtual package <tt>ident-server</tt>. There are 7 packages
+that provide this virtual package, which is more than the maximum that was
+set. Therefore no individual providing packages are shown, but the total
+number of providing packages is shown alongside the arrow for the
+relationship. Note that the requested package <tt>pidentd</tt> is one of
+the providing package.
+</p><p>
+Adding the option <tt>-I</tt> (show installed packages) when generating this
+graph, could result in the bottom graph, which has the following changes:
+</p>
+<ul>
+<li>
+as <tt>debconf</tt> is installed, <tt>debconf-2.0</tt> is no longer
+shown and thus the providing packages are not shown either; the ellipsis in
+the second row indicates there are other packages that can satisfy the
+alternative dependency
+</li><li>
+as <tt>openbsd-inetd</tt> is installed, only that providing package is shown
+as alternative and thus again <tt>inet-superserver</tt> and its providing
+packages are no longer included
+</li><li>
+as <tt>pidentd</tt> is installed, only that providing package is shown for
+<tt>ident-server</tt>; as <tt>ident-server</tt> is provided by the requested
+package, this virtual package is still shown; the ellipsis in the second row
+indicates there are other (undisplayed) providing packages
+</li>
+</ul>
+
+<p>Note that for this second graph the option <tt>--max-providers<tt> is no
+longer relevant.</p>
+
+</td>
+<td width="10" />
+<td width="400">
+
+<p><tt><font size="-1">
+$ debtree --max-providers=5 pident
+</font></tt></p>
+<hr />
+<img src="thumbs/usage3.1.png" alt="Dependency graph for pidentd" />
+<hr />
+<table>
+<tr>
+<td>Generated .dot file:</td>
+<td><a href="usage3.1.dot">DOT</a></td>
+</tr><tr>
+<td>Full-sized images:</td>
+<td><a href="usage3.1.ps" target="_blank">PS</a>&nbsp;|&nbsp;PNG&nbsp;|&nbsp;<a href="usage3.1.svg" target="_blank">SVG</a></td>
+</tr>
+</table>
+
+<br />
+
+<p><tt><font size="-1">
+$ debtree -I pident
+</font></tt></p>
+<hr />
+<img src="thumbs/usage3.2.png" alt="Dependency graph for pidentd (with installed packages)" />
+<hr />
+<table>
+<tr>
+<td>Generated .dot file:</td>
+<td><a href="usage3.2.dot">DOT</a></td>
+</tr><tr>
+<td>Full-sized images:</td>
+<td><a href="usage3.2.ps" target="_blank">PS</a>&nbsp;|&nbsp;PNG&nbsp;|&nbsp;<a href="usage3.2.svg" target="_blank">SVG</a></td>
+</tr>
+</table>
+
+</td>
+</tr>
+</tbody>
+</table>
+
+</body>
+</html>

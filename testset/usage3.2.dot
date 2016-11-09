@@ -1,0 +1,85 @@
+digraph "pidentd" {
+	rankdir=LR;
+	node [shape=box];
+	"pidentd" -> "libssl0.9.8" [color=blue,label="(>= 0.9.8e-1)"];
+	"libssl0.9.8" -> "alt1":"debconf" [color=blue,label="(>= 0.5)"];
+	"libssl0.9.8" -> "libssl" [color=red];
+	"libssl0.9.8" [style=filled,fillcolor=honeydew];
+	"pidentd" -> "netbase" [color=blue];
+	"netbase" -> "lsb-base" [color=blue,label="(>= 3.0-6)"];
+	"lsb-base" -> "sed" [color=blue];
+	"sed" [style=filled,fillcolor=honeydew];
+	"lsb-base" -> "ncurses-bin" [color=blue];
+	"ncurses-bin" -> "libncurses5" [color=purple,style=bold,label="(>= 5.6+20071006-3)"];
+	"libncurses5" -> "libgpm2";
+	"libgpm2" [style=filled,fillcolor=honeydew];
+	"libncurses5" [style=filled,fillcolor=honeydew];
+	"ncurses-bin" -> "ncurses" [color=red];
+	"ncurses-bin" -> "tput" [color=red];
+	"ncurses-bin" [style=filled,fillcolor=honeydew];
+	"lsb-base" [style=filled,fillcolor=honeydew];
+	"netbase" -> "ifupdown";
+	"ifupdown" -> "net-tools" [color=blue];
+	"net-tools" [style=filled,fillcolor=honeydew];
+	"ifupdown" -> "lsb-base" [color=blue];
+	"ifupdown" [style=filled,fillcolor=honeydew];
+	"netbase" [style=filled,fillcolor=honeydew];
+	"pidentd" -> "adduser" [color=blue];
+	"adduser" -> "perl-base" [color=blue,label="(>= 5.6.0)"];
+	"perl-base" -> "dpkg" [color=purple,style=bold,label="(>= 1.14.20)"];
+	"perl-base" [style=filled,fillcolor=honeydew];
+	"adduser" -> "passwd" [color=blue,label="(>= 1:4.0.12)"];
+	"adduser" -> "alt1" [color=blue];
+	"adduser" [style=filled,fillcolor=honeydew];
+	"pidentd" -> "passwd" [color=blue];
+	"pidentd" -> "update-inetd" [color=blue];
+	"update-inetd" -> "alt1" [color=blue];
+	"update-inetd" [style=filled,fillcolor=honeydew];
+	"pidentd" -> "alt2" [color=blue];
+	"alt2":"openbsd-inetd" -> "libwrap0" [color=blue,label="(>= 7.6-4~)"];
+	"libwrap0" -> "tcpd";
+	"tcpd" -> "libwrap0" [color=blue,label="(>= 7.6-4~)"];
+	"tcpd" -> "alt1":"debconf" [color=blue,label="(>= 0.5)"];
+	"tcpd" [style=filled,fillcolor=honeydew];
+	"libwrap0" [style=filled,fillcolor=honeydew];
+	"alt2":"openbsd-inetd" -> "lsb-base" [color=blue,label="(>= 3.0-10)"];
+	"alt2":"openbsd-inetd" -> "update-inetd" [color=blue];
+	"alt2":"openbsd-inetd" -> "tcpd" [color=blue];
+	"alt2":"openbsd-inetd" -> "netkit-inetd" [color=red];
+	"pidentd" -> "ident-server" [color=red];
+	"pidentd" -> "ident-server" [arrowhead=inv,color=green];
+	"ident-server" -> "Pr_ident-server" [label="-7-",dir=back,arrowtail=inv,color=green];
+	"Pr_ident-server" [label="...",style=rounded];
+	"ident-server" [shape=octagon];
+	"pidentd" [style="setlinewidth(2)"]
+	"libssl" [style=filled,fillcolor=oldlace];
+	"ncurses" [style=filled,fillcolor=oldlace];
+	"netkit-inetd" -> virt1 [dir=back,arrowtail=inv,color=green];
+	"netkit-inetd" [shape=octagon];
+	"tput" -> "ncurses-bin" [dir=back,arrowtail=inv,color=green];
+	"tput" [shape=octagon];
+	alt1 [
+		shape = "record"
+		style = "filled"
+		fillcolor = "honeydew"
+		label = "<debconf> \{debconf\} | <other> ..."
+	]
+	alt2 [
+		shape = "record"
+		style = "filled"
+		fillcolor = "honeydew"
+		label = "<openbsd-inetd> openbsd-inetd | <other> ..."
+	]
+	virt1 [
+		shape = "record"
+		style = "rounded,filled"
+		fillcolor = "honeydew"
+		label = "<openbsd-inetd> [openbsd-inetd] | <other> ..."
+	]
+	"dpkg" [shape=diamond];
+	"dpkg" [style=filled,fillcolor=honeydew];
+	"passwd" [shape=diamond];
+	"passwd" [style=filled,fillcolor=honeydew];
+}
+// Excluded dependencies:
+// libc6 zlib1g

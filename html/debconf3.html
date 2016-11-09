@@ -1,0 +1,66 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>debtree - Package dependency graphs</title>
+</head>
+
+<body>
+<h1>debtree &mdash; package dependency graphs on steroids</h1>
+
+<table>
+<tbody valign="top">
+<tr>
+<td>
+
+<h3><a href="index.html">Introduction</a></h3>
+
+<h3>Example: debconf</h3>
+
+<ol start="0">
+<li><a href="debconf0.html">Graph from apt-cache (for comparison)</a></li>
+<li><a href="debconf1.html">Basic graph (only hard dependencies and conflicts)</a></li>
+<li><a href="debconf2.html">Basic graph with Recommends</a></li>
+<li><b>Basic graph with Recommends and Suggests</b></li>
+<li><a href="debconf4.html">Basic graph with Recommends and showing alternatives</a></li>
+<li><a href="debconf5.html">Default graph (showing Recommends, alternatives and versions)</a></li>
+<li><a href="debconf6.html">Default graph with Suggests</a></li>
+<li><a href="debconf7.html">Default graph with Suggests and versioned Conflicts</a></li>
+<li><a href="debconf8.html">Default graph (rotated)</a></li>
+</ol>
+<hr />
+
+<p>Suggested packages are indicated using dotted arrows.</p>
+<p>
+Note that the dependencies for <tt>perl</tt> are not displayed (again to
+limit size and clutter); this is indicated by its shape.
+</p>
+
+</td>
+<td width="10" />
+<td width="400">
+
+<p><tt><font size="-1">
+$ debtree --with-suggests --no-alternatives --no-versions debconf
+</font></tt></p>
+<hr />
+<img src="thumbs/debconf3.png" alt="Dependency graph for debconf" />
+<hr />
+<table>
+<tr>
+<td>Generated .dot file:</td>
+<td><a href="debconf3.dot" target="_blank">DOT</a></td>
+</tr><tr>
+<td>Full-sized images:</td>
+<td><a href="debconf3.ps" target="_blank">PS</a>&nbsp;|&nbsp;<a href="debconf3.png" target="_blank">PNG</a>&nbsp;|&nbsp;<a href="debconf3.svg" target="_blank">SVG</a></td>
+</tr>
+</table>
+<p><font size="-1"><a href="aptitude3.html">Equivalent graph for aptitude</a></font></p>
+
+</td>
+</tr>
+</tbody>
+</table>
+
+</body>
+</html>

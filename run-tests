@@ -1,0 +1,131 @@
+#! /bin/bash
+set -e
+
+verbose="-q"
+screen=""
+web=""
+test=""
+target=""
+
+while true; do
+	case "$1" in
+	    "")	break ;;
+	    -s)	screen=1 ;;
+	    -t)	shift; test=$1 ;;
+	    -v) verbose="-v -v -v -v" ;;
+	    -w)	web=1 ;;
+	    -*)
+		echo "Error: unrecognized argument '$1'"
+		exit 1
+		;;
+	     *)
+		if [ -z "$target" ]; then
+			target=$1
+		else
+			echo "Error: invalid number of arguments"
+			exit 1
+		fi
+		;;
+	esac
+	shift
+done
+
+if [ -z "$screen" ]; then
+	if [ -z "$target" ]; then
+		echo "Error: target directory not specified"
+		exit 1
+	fi
+
+	mkdir -p $target
+	if [ "$web" ]; then
+		mkdir -p $target/thumbs
+	else
+		arch=$(dpkg --print-architecture)
+		dist=$(apt-cache policy | \
+		       sed -r "/^ [0-9]+ /N; s/^ ([0-9]+) .*a=([^,]*).*/\1 \2/" | \
+		       grep "^[0-9]" | sort -nru | head -n1 | awk '{print $2}')
+		if [ -z "$test" ]; then
+			echo "Testset generated $(date -uR) on $arch/$dist" >$target/README
+		fi
+	fi
+fi
+
+gen_set() {
+	count=1
+	for opt in "--no-versions --no-alternatives --no-recommends" \
+		   "--no-versions --no-alternatives" \
+		   "--no-versions --no-alternatives --with-suggests" \
+		   "--no-versions" \
+		   "" \
+		   "--with-suggests" \
+		   "--with-suggests --versioned-conflicts" \
+		   "--rotate"
+	    do
+		echo $1$count $1 $opt
+		count=$(($count + 1))
+	done
+}
+
+testset="dpkg dpkg
+$(gen_set debconf)
+$(gen_set aptitude)
+usage1 dpkg -b --arch=all --no-recommends --no-conflicts
+usage2 clamav -I -S
+usage3.1 pidentd --max-providers=5
+usage3.2 pidentd -I
+usage4 apt -I --rdeps-depth=3"
+
+if [ -z "$web" ]; then
+testset="$testset
+test1 tcpd --no-conflicts -I --rdeps-depth=2 --max-rdeps=3
+test2 libcairo2 --no-conflicts -I --rdeps-depth=20
+test3 debian-installer -b --arch=armel --no-recommends --no-conflicts
+test4 whiptail -R"
+fi
+
+echo "$testset" | while read outfile package opts; do
+	if [ "$test" ] && [ $outfile != $test ]; then
+		continue
+	fi
+
+	echo "Generating $outfile: $opts $package" >&2
+	if [ "$screen" ]; then
+		./debtree $verbose $opts $package | dot -Tps | kghostview - &
+		sleep 10
+	else
+        	./debtree $verbose $opts $package >$target/$outfile.dot
+		if [ "$web" ]; then
+			for format in ps png svg; do
+				dot -T$format -o "$target/$outfile.$format" \
+					$target/$outfile.dot
+			done
+			# Generate thumbnail; from SVG gives best quality
+			convert $target/$outfile.svg -thumbnail 400 \
+				$target/thumbs/$outfile.png
+
+			# For dpkg we only need the thumbnail
+			rm -f $target/dpkg.*
+			# The following files are not wanted for the website
+			# because of size restraints
+			rm -f $target/aptitude[5678].png
+			rm -f $target/debconf[678].png
+			rm -f $target/usage[124].png
+			rm -f $target/usage3.[12].png
+		fi
+	fi
+done
+
+# Also generate the comparison graphs from apt-cache
+if [ "$web" ]; then
+	for package in debconf aptitude; do
+		outfile=${package}0
+		apt-cache dotty $package >$target/$outfile.dot
+		for format in ps png svg; do
+			dot -T$format -o "$target/$outfile.$format" \
+				$target/$outfile.dot
+		done
+		# Generate thumbnail; from SVG gives best quality
+		convert $target/$outfile.svg -thumbnail 400 \
+			$target/thumbs/$outfile.png
+	done
+fi

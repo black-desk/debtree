@@ -1,0 +1,23 @@
+# This file contains a list of 'skip' packages for debtree
+# By default debtree will completely ignore 'skip' packages: they, and their
+# dependencies will not be displayed on graphs.
+#
+# This file is ignored when debtree is used to search for dependency paths
+# between two packages.
+#
+# This file can be overruled on a per-user basis by creating a directory
+# ~/.debtree/ and adding a custom version of this file there.
+# List one or more packages per line (separated by spaces or tabs).
+# Comments after package names are allowed.
+
+# Very basic libraries
+libc6
+libgcc1
+libstdc++6
+zlib1g
+libx11-6
+multiarch-support
+
+# Extremely basic development libraries
+libc-dev
+libc6-dev

@@ -1,0 +1,90 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>debtree - Package dependency graphs</title>
+</head>
+
+<body>
+<h1>debtree &mdash; package dependency graphs on steroids</h1>
+
+<table>
+<tbody valign="top">
+<tr>
+<td>
+
+<h3><a href="index.html">Introduction</a></h3>
+
+<h3>Example: debconf</h3>
+
+<ol start="0">
+<li><a href="debconf0.html">Graph from apt-cache (for comparison)</a></li>
+<li><b>Basic graph (only hard dependencies and conflicts)</b></li>
+<li><a href="debconf2.html">Basic graph with Recommends</a></li>
+<li><a href="debconf3.html">Basic graph with Recommends and Suggests</a></li>
+<li><a href="debconf4.html">Basic graph with Recommends and showing alternatives</a></li>
+<li><a href="debconf5.html">Default graph (showing Recommends, alternatives and versions)</a></li>
+<li><a href="debconf6.html">Default graph with Suggests</a></li>
+<li><a href="debconf7.html">Default graph with Suggests and versioned Conflicts</a></li>
+<li><a href="debconf8.html">Default graph (rotated)</a></li>
+</ol>
+<hr />
+
+<p>
+Shown are:
+<font color="purple">Pre-Depends</font>,
+<font color="blue">Depends</font>,
+unversioned <font color="red">Conflicts</font> and
+relevant <font color="green">Provides</font>.
+</p><p>
+This is one of the most basic graphs that can be generated. Only the Conflicts
+and the virtual package <tt>debconf-2.0</tt> that <tt>debconf</tt> provides could
+have been suppressed.
+</p><p>
+The graph also shows the full set of packages that provide <tt>debconf-2.0</tt>.
+The square brackets around <tt>debconf</tt> indicate that the package is also
+displayed elsewhere in the graph, while the braces around <tt>cdebconf</tt>
+indicate that the dependency info for that package is not included in the graph.
+</p><p>
+<tt>perlapi-5.10.0</tt> is a virtual package provided by <tt>perl-base</tt>.
+A virtual package is only displayed if it is provided by the requested package,
+or if it is a dependency or conflict from some package included in the graph.
+</p><p>
+Some packages, like <tt>libc6</tt> and <tt>zlib1g</tt>, have been excluded from
+all graphs as so many packages depend on them that they only cause clutter without
+adding any real information; it would be nice to show them in some other way.
+</p><p>
+The reddish shade of <tt>debconf-tiny</tt> means that the package is unknown
+(does not exist in the package database).
+</p><p>
+Note the circular dependency between <tt>debconf</tt> and <tt>debconf-i18n</tt>.
+</p>
+
+</td>
+<td width="10" />
+<td width="400">
+
+<p><tt><font size="-1">
+$ debtree --no-recommends --no-alternatives --no-versions debconf
+</font></tt></p>
+<hr />
+<img src="thumbs/debconf1.png" alt="Dependency graph for debconf" />
+<hr />
+<table>
+<tr>
+<td>Generated .dot file:</td>
+<td><a href="debconf1.dot">DOT</a></td>
+</tr><tr>
+<td>Full-sized images:</td>
+<td><a href="debconf1.ps" target="_blank">PS</a>&nbsp;|&nbsp;<a href="debconf1.png" target="_blank">PNG</a>&nbsp;|&nbsp;<a href="debconf1.svg" target="_blank">SVG</a></td>
+</tr>
+</table>
+<p><font size="-1"><a href="aptitude1.html">Equivalent graph for aptitude</a></font></p>
+
+</td>
+</tr>
+</tbody>
+</table>
+
+</body>
+</html>

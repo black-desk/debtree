@@ -1,0 +1,28 @@
+digraph "aptitude" {
+	rankdir=LR;
+	node [shape=box];
+	"aptitude" -> "libapt-pkg-libc6.7-6-4.6" [color=blue];
+	"libapt-pkg-libc6.7-6-4.6" -> "apt" [dir=back,arrowtail=inv,color=green];
+	"libapt-pkg-libc6.7-6-4.6" [shape=octagon];
+	"aptitude" -> "libcwidget3" [color=blue];
+	"libcwidget3" -> "libncursesw5" [color=blue];
+	"libcwidget3" -> "libsigc++-2.0-0c2a" [color=blue];
+	"libsigc++-2.0-0c2a" -> "libsigc++-1.9-0" [color=red];
+	"libsigc++-2.0-0c2a" -> "libsigc++-2.0-0" [color=red];
+	"libsigc++-2.0-0c2a" -> "libsigc++-2.0-0c2" [color=red];
+	"aptitude" -> "libept0" [color=blue];
+	"libept0" -> "libapt-pkg-libc6.7-6-4.6" [color=blue];
+	"libept0" -> "libxapian15" [color=blue];
+	"libxapian15" -> "libxapian2" [color=red];
+	"aptitude" -> "libncursesw5" [color=blue];
+	"aptitude" -> "libsigc++-2.0-0c2a" [color=blue];
+	"aptitude" -> "libxapian15" [color=blue];
+	"aptitude" [style="setlinewidth(2)"]
+	"libsigc++-1.9-0" [style=filled,fillcolor=oldlace];
+	"libsigc++-2.0-0" [style=filled,fillcolor=oldlace];
+	"libsigc++-2.0-0c2" [style=filled,fillcolor=oldlace];
+	"libxapian2" [style=filled,fillcolor=oldlace];
+	"apt" [shape=diamond];
+}
+// Excluded dependencies:
+// libc6 libgcc1 libstdc++6 zlib1g

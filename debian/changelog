@@ -1,0 +1,191 @@
+debtree (1.0.10+nmu1) unstable; urgency=medium
+
+  * Non-maintainer upload.
+  * Remove override_dh_builddeb to no more build with deprecated bzip2
+    compression. (Closes: #833242)
+  * Guard …."\E" with "no warnings qw(misc);" (Closes: #823279)
+  * Fix typo in man page found by lintian.
+
+ -- Axel Beckert <abe@debian.org>  Wed, 09 Nov 2016 01:26:57 +0100
+
+debtree (1.0.10) unstable; urgency=low
+
+  [ Thorsten Alteholz ]
+  * [6781a55f] show the size of all packages that depend on a given package
+
+  [ Anibal Monsalve Salazar ]
+  * [f2b58fdf] Add multiarch-support to skiplist
+    Thanks to Fabian Greffrath for the suggestion
+    Closes: #659223
+
+ -- Anibal Monsalve Salazar <anibal@debian.org>  Fri, 22 Jun 2012 09:17:00 +1000
+
+debtree (1.0.9) unstable; urgency=low
+
+  * Really fix typo in debtree.1
+
+ -- Anibal Monsalve Salazar <anibal@debian.org>  Wed, 30 Nov 2011 09:59:04 +1100
+
+debtree (1.0.8) unstable; urgency=low
+
+  * Fix typo in debtree.1
+    Patch by Jonas Genannt
+    Closes: #650431
+
+ -- Anibal Monsalve Salazar <anibal@debian.org>  Wed, 30 Nov 2011 09:43:38 +1100
+
+debtree (1.0.7) unstable; urgency=low
+
+  * Add python2.6 and python2.7 to endlist
+    Patch by Jakub Wilk
+    Closes: #616173
+  * Fix out-of-date-standards-version
+  * Fix maintainer-script-without-set-e
+  * Fix debhelper-overrides-need-versioned-build-depends
+  * Debian source format is 3.0 (native)
+
+ -- Anibal Monsalve Salazar <anibal@debian.org>  Sun, 17 Apr 2011 09:42:13 +1000
+
+debtree (1.0.6) unstable; urgency=low
+
+  [ Frans Pop ]
+  * Fix typos in man page; thanks to A. Costa for the patch. Closes: #573818.
+  * Disable pattern meta characters for package names in regular expressions.
+    Closes: #574647.
+
+  [ Anibal Monsalve Salazar ]
+  * New maintainer. Frans, we'll miss you.
+
+ -- Anibal Monsalve Salazar <anibal@debian.org>  Sat, 04 Sep 2010 23:18:01 +1000
+
+debtree (1.0.5) unstable; urgency=low
+
+  * Remove ucf-handled config files on purge. With thanks to piuparts testing.
+
+ -- Frans Pop <fjp@debian.org>  Tue, 09 Feb 2010 17:49:44 +0100
+
+debtree (1.0.4) unstable; urgency=low
+
+  * Take the highest available version for source packages as well.
+  * Only use the installed version of a package if the --show-installed option
+    is active; otherwise always use the highest available version.
+  * Document which version of packages will be used in the man page.
+  * Move debtree web site to http://collab-maint.alioth.debian.org/debtree/.
+
+ -- Frans Pop <fjp@debian.org>  Sat, 14 Nov 2009 15:35:46 +0100
+
+debtree (1.0.3) unstable; urgency=low
+
+  * Take the highest available version for uninstalled packages instead of the
+    lowest. Thanks to Thomas Wentzel for the report and patch. Closes: #554719. 
+  * Add a few more X.Org-related packages to the end list.
+
+ -- Frans Pop <fjp@debian.org>  Sat, 07 Nov 2009 03:19:16 +0100
+
+debtree (1.0.2) unstable; urgency=low
+
+  * Selectively use AptPkg for build dependencies. AptPkg will return the
+    correct build dependencies for the current or a selected architecture,
+    but cannot return the architecture conditions themselves. Therefore use
+    AptPkg for all cases except for ARCH=all. For that case continue to call
+    out to apt-cache.
+  * Add hurd-i386, kfreebsd-i386, kfreebsd-amd64 as valid architectures.
+  * Make debtree work for any locale. Closes: #547388.
+
+ -- Frans Pop <fjp@debian.org>  Sun, 20 Sep 2009 12:09:17 +0200
+
+debtree (1.0.1) unstable; urgency=low
+
+  * Fix perl error if package has no dependencies at all.
+  * Add gksu to the end list.
+
+ -- Frans Pop <fjp@debian.org>  Thu, 17 Sep 2009 23:24:02 +0200
+
+debtree (1.0) unstable; urgency=low
+
+  * Change packaging to use the magic 'dh' command.
+  * Upload to the Debian archive. Closes: #447158. Yay!
+
+  [ Changes in unofficial release 0.9.9 - Wed, 16 Sep 2009 13:35:58 +0200 ]
+  * Complete conversion to perl by using libapt-pkg-perl instead of call-outs
+    to dctrl-tools, except for getting build dependencies as libapt-pkg-perl
+    does not expose architecture conditions (#546863).
+
+  [ Changes in unofficial release 0.9.0 - Mon, 14 Sep 2009 19:56:12 +0200 ]
+  * Remove support for printing dependency paths. It only duplicates
+    functionality offered better by 'aptitude why'.
+  * First stage of conversion to perl. Script is now written in perl, but
+    still calls out to external dctrl-tools to get dependency info.
+  * Show other providers for any virtual packages provided by the requested
+    package.
+  * Show order of dependencies on virtual packages by numbering the arrows.
+
+  [ Changes in unofficial release 0.8.1 - Sat, 12 Sep 2009 17:56:27 +0200 ]
+  * Update script version and copyright in script.
+  * Move git repository to collab-maint on alioth.
+
+  [ Changes in unofficial release 0.8.0 - Sat, 12 Sep 2009 16:01:49 +0200 ]
+  * Add support for showing reverse dependencies in graphs.
+  * Fix incomplete display of skipped packages (only first was shown).
+
+  [ Changes in unofficial release 0.7.3 - Sun, 06 Sep 2009 11:24:50 +0200 ]
+  * debian/control: add Vcs-Git field.
+  * Fix a few corner cases where provides and alternatives were not displayed
+    correctly for skip or end packages. There's a minor change in the way
+    alternatives containing skipped packages are displayed.
+  * Extend endlist and update for lenny/squeeze.
+
+  [ Changes in unofficial release 0.7.2 - Wed, 24 Oct 2007 16:23:34 +0200 ]
+  * Fix informational message listing skipped packages.
+  * Don't show packages that provide a pseudo package if they are in the skip
+    list.
+  * Show pseudo packages provided by the requested package in dependency
+    graphs (not in build dependency graphs).
+  * Show multiple providing packages for a virtual package if there are less
+    than a certain number (default 3); dependencies for the providing packages
+    are not shown.
+  * Add common build dependencies to end list.
+  * Add some development/packaging related packages to skip and end lists;
+    prompted by build dep graph for asterisk.
+
+  [ Changes in unofficial release 0.7.1 - Thu, 18 Oct 2007 15:41:11 +0200 ]
+  * Print info message with skipped dependencies after generating graph.
+  * Split ToDo items out of script into separate file.
+  * Add man page.
+
+  [ Changes in unofficial release 0.7.0 - Tue, 02 Oct 2007 19:24:38 +0200 ]
+  * Don't print graph elements for unknown packages when showing dependency
+    paths.
+  * Move the 'skip' and 'end' lists to configuration files using ucf to
+    manage them. The user can install overrides in ~/.debtree.
+  * Add logging functions to unclutter script.
+  * Add new option max-depth which makes it possible to reduce the size and
+    complexity of a graph by maximizing the number of times debtree will
+    recurse into the next level of dependencies.
+
+  [ Changes in unofficial release 0.6.0 - Sun, 30 Sep 2007 14:58:37 +0200 ]
+  * Add support for generating build dependency graphs. By default a graph for
+    the current architecture is generated.
+  * Add new option no-conflicts; useful for build dependency graphs.
+  * Add new option no-skip. This allows packages that by default are skipped
+    (not included at all) to be shown as "end" packages.
+  * Add new option show-all. This results in the full dependency tree to be
+    generated. The dependencies for every package are expanded and no packages
+    are skipped.
+  * Add new option show-installed. Installed packages are marked with a
+    different color ('honeydew'). For satisfied alternative dependencies only
+    installed alternative packages are installed.
+  * Mark unknown packages with a different color ('oldlace'). This can only
+    be done for packages that are not part of an alternatives set; for those
+    that are, a warning is printed.
+  * For leaf pseudo packages we need to check if they were members of
+    alternative dependencies to avoid stray nodes in a graph (seen with
+    geneweb).
+  * Introduce verbosity options and rationalize messages and error handling.
+  * Add sanity check for presence of dctrl-tools scripts.
+    Thanks to Maximilian Attems for the suggestion.
+
+  [ Changes in unofficial release 0.5.0 - Fri, 28 Sep 2007 06:28:30 +0200 ]
+  * Initial unofficial release.
+
+ -- Frans Pop <fjp@debian.org>  Wed, 16 Sep 2009 13:55:56 +0200

@@ -1,0 +1,97 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>debtree - Package dependency graphs</title>
+</head>
+
+<body>
+<h1>debtree &mdash; package dependency graphs on steroids</h1>
+
+<table>
+<tbody valign="top">
+<tr>
+<td>
+
+<h3><a href="index.html">Introduction</a></h3>
+
+<h3>Example: debconf</h3>
+
+<ol start="0">
+<li><a href="debconf0.html">Graph from apt-cache (for comparison)</a></li>
+<li><a href="debconf1.html">Basic graph (only hard dependencies and conflicts)</a></li>
+<li><a href="debconf2.html">Basic graph with Recommends</a></li>
+<li><a href="debconf3.html">Basic graph with Recommends and Suggests</a></li>
+<li><a href="debconf4.html">Basic graph with Recommends and showing alternatives</a></li>
+<li><a href="debconf5.html">Default graph (showing Recommends, alternatives and versions)</a></li>
+<li><a href="debconf6.html">Default graph with Suggests</a></li>
+<li><b>Default graph with Suggests and versioned Conflicts</b></li>
+<li><a href="debconf8.html">Default graph (rotated)</a></li>
+</ol>
+<hr />
+
+<p>
+Note the nice relationships around <tt>whiptail</tt> etc. with again the
+Suggests a single arrow, but the Conflicts and Provides showing the correct
+individual relationships.
+</p><p>
+The versioned conflicts from <tt>perl-base</tt> are hard to miss...
+</p><p>
+This graph could be extended even further.
+The <tt>no-skip</tt> and <tt>show-all</tt> options can be used to also show
+packages that by default are excluded or for which the dependencies are not
+expanded. However, in a lot of cases this will only reduce the usability of
+the graph. (Although in the case of debconf the result with
+<tt>-S -VC --show-all</tt> is still quite nice.)
+</p><p>
+It is more likely that you'll want additional packages to be excluded or not
+expanded because the graph is too big or complex. The contents of a graph can
+be limited by:
+</p>
+<ul>
+<li>
+including less information, for example by not showing recommended packages
+or conflicts, or using the <tt>show-installed</tt> option;
+</li><li>
+limiting the depth of the graph (note that with limit lower than 3 or 4 the
+result will probably not be very useful);
+</li><li>
+adding packages to one of the configuration files in <tt>/etc/debtree/</tt>;
+</li><li>
+some combination of these methods.
+</li>
+</ul>
+
+<p>
+Some packages, especially meta packages like <tt>kde</tt>, have such a large
+number of dependencies that it is almost impossible to produce a useful graph.
+</p>
+
+</td>
+<td width="10" />
+<td width="400">
+
+<p><tt><font size="-1">
+$ debtree --with-suggests --versioned-conflicts debconf
+</font></tt></p>
+<hr />
+<img src="thumbs/debconf7.png" alt="Dependency graph for debconf" />
+<hr />
+<table>
+<tr>
+<td>Generated .dot file:</td>
+<td><a href="debconf7.dot" target="_blank">DOT</a></td>
+</tr><tr>
+<td>Full-sized images:</td>
+<td><a href="debconf7.ps" target="_blank">PS</a>&nbsp;|&nbsp;PNG&nbsp;|&nbsp;<a href="debconf7.svg" target="_blank">SVG</a></td>
+</tr>
+</table>
+<p><font size="-1"><a href="aptitude7.html">Equivalent graph for aptitude</a></font></p>
+
+</td>
+</tr>
+</tbody>
+</table>
+
+</body>
+</html>

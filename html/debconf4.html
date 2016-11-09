@@ -1,0 +1,70 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>debtree - Package dependency graphs</title>
+</head>
+
+<body>
+<h1>debtree &mdash; package dependency graphs on steroids</h1>
+
+<table>
+<tbody valign="top">
+<tr>
+<td>
+
+<h3><a href="index.html">Introduction</a></h3>
+
+<h3>Example: debconf</h3>
+
+<ol start="0">
+<li><a href="debconf0.html">Graph from apt-cache (for comparison)</a></li>
+<li><a href="debconf1.html">Basic graph (only hard dependencies and conflicts)</a></li>
+<li><a href="debconf2.html">Basic graph with Recommends</a></li>
+<li><a href="debconf3.html">Basic graph with Recommends and Suggests</a></li>
+<li><b>Basic graph with Recommends and showing alternatives</b></li>
+<li><a href="debconf5.html">Default graph (showing Recommends, alternatives and versions)</a></li>
+<li><a href="debconf6.html">Default graph with Suggests</a></li>
+<li><a href="debconf7.html">Default graph with Suggests and versioned Conflicts</a></li>
+<li><a href="debconf8.html">Default graph (rotated)</a></li>
+</ol>
+<hr />
+
+<p>
+Here a dependency that can be satisfied by multiple packages is shown:<br />
+<tt>debconf Depends: debconf-i18n | debconf-english</tt><br />
+In earlier graphs only the first alternative was displayed.
+</p><p>
+Only a single arrow is used to show the relationship <i>to</i> the alternative packages, but arrows showing dependencies <i>from</i> an alternative package to other packages originate from the individual packages in the set. However, in some cases this may not be 100% visible as dot can originate an arrow end on the line separating two alternatives.
+</p><p>
+Note the mutual Conflicts between the alternatives.
+</p>
+
+</td>
+<td width="10" />
+<td width="400">
+
+<p><tt><font size="-1">
+$ debtree --no-versions debconf
+</font></tt></p>
+<hr />
+<img src="thumbs/debconf4.png" alt="Dependency graph for debconf" />
+<hr />
+<table>
+<tr>
+<td>Generated .dot file:</td>
+<td><a href="debconf4.dot" target="_blank">DOT</a></td>
+</tr><tr>
+<td>Full-sized images:</td>
+<td><a href="debconf4.ps" target="_blank">PS</a>&nbsp;|&nbsp;<a href="debconf4.png" target="_blank">PNG</a>&nbsp;|&nbsp;<a href="debconf4.svg" target="_blank">SVG</a></td>
+</tr>
+</table>
+<p><font size="-1"><a href="aptitude4.html">Equivalent graph for aptitude</a></font></p>
+
+</td>
+</tr>
+</tbody>
+</table>
+
+</body>
+</html>

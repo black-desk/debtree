@@ -1,0 +1,86 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>debtree - Package dependency graphs</title>
+</head>
+
+<body>
+<h1>debtree &mdash; package dependency graphs on steroids</h1>
+
+<table>
+<tbody valign="top">
+<tr>
+<td>
+<h3><a href="index.html">Introduction</a></h3>
+
+<h3>Advanced usage examples</h3>
+
+<ol>
+<li><a href="usage1.html">Create a build dependency graph</a></li>
+<li><a href="usage2.html">Visualize what would happen when installing a package</a></li>
+<li><a href="usage3.html">Dependencies on virtual packages</a></li>
+<li><b>Reverse dependencies</b></li>
+</ol>
+<hr />
+
+<p>
+A reverse dependency graph shows why a package is installed: what other
+packages depend on it.
+</p><p>
+This graph shows only installed packages (the <tt>-I</tt> option), with
+the reverse dependencies in light blue. By default only one level of reverse
+dependencies is displayed. In this example three levels are included as a
+result of using the option <tt>--rdeps-depth=3</tt>. To show <i>only</i>
+reverse dependencies, add the option <tt>--max-depth=0</tt>.
+</p><p>
+The colors of the arrows have the same meaning as for "forward" dependencies.
+The inclusion of Recommends is controlled by the <tt>--no-recommends</tt>
+option; displaying reverse dependencies of type Suggests is not supported.
+</p><p>
+The graph will always include all <i>direct</i> reverse dependencies
+(both on the package itself and all virtual packages provided by it).
+In the example some packages depend on <tt>apt</tt> itself, and others
+on <tt>libapt-pkg-...</tt>.
+</p><p>
+As shown for <tt>debconf</tt>, the number of <i>indirect</i> reverse
+dependencies that gets displayed, is by default limited to five, but that
+can be changed by using the option <tt>--max_rdeps=<i>n</i></tt>. When
+the individual packages are not shown, the number of packages per type of
+dependency is shown next to their arrows.
+</p><p>
+It is possible to generate graphs that show all reverse dependencies,
+both installed and not installed, but be warned that such graphs are
+likely to explode in size.
+</p><p>
+Additional examples can be found in
+<a href="http://alioth.debian.org/~fjp/log/posts/debtree-next_-_More_steroids.html">the author's blog</a>.
+</p>
+
+</td>
+<td width="10" />
+<td width="400">
+
+<p><tt><font size="-1">
+$ debtree -I --rdeps-depth=3 apt
+</font></tt></p>
+<hr />
+<img src="thumbs/usage4.png" alt="Dependency graph for pidentd" />
+<hr />
+<table>
+<tr>
+<td>Generated .dot file:</td>
+<td><a href="usage4.dot">DOT</a></td>
+</tr><tr>
+<td>Full-sized images:</td>
+<td><a href="usage4.ps" target="_blank">PS</a>&nbsp;|&nbsp;PNG&nbsp;|&nbsp;<a href="usage4.svg" target="_blank">SVG</a></td>
+</tr>
+</table>
+
+</td>
+</tr>
+</tbody>
+</table>
+
+</body>
+</html>

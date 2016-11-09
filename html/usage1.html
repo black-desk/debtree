@@ -1,0 +1,87 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>debtree - Package dependency graphs</title>
+</head>
+
+<body>
+<h1>debtree &mdash; package dependency graphs on steroids</h1>
+
+<table>
+<tbody valign="top">
+<tr>
+<td>
+<h3><a href="index.html">Introduction</a></h3>
+
+<h3>Advanced usage examples</h3>
+
+<ol>
+<li><b>Create a build dependency graph</b></li>
+<li><a href="usage2.html">Visualize what would happen when installing a package</a></li>
+<li><a href="usage3.html">Dependencies on virtual packages</a></li>
+<li><a href="usage4.html">Reverse dependencies</a></li>
+</ol>
+<hr />
+
+<p>
+This example shows a basic build dependency graph for <tt>dpkg</tt>.
+Alternatives and Suggests are suppressed by default and Recommends and Conflicts
+have been suppressed using command line options. This graph represents what gets
+installed on a buildd when <tt>dpkg</tt> is built.
+</p><p>
+The <tt>--show-all</tt> option could have been used to also show dependencies on
+packages like <tt>libc6</tt>. In this case the resulting graph is still manageable.
+</p><p>
+In this case only Build-Depends are shown. If present, Build-Depends-Indep are
+indicated by lines that are thinner and a bit lighter in color.
+</p><p>
+By default the graph is generated for the architecture on which it is generated.
+In that case the "arch conditions" for the build dependency on <tt>libselinux1-dev</tt>
+would not have been displayed. They are in this graph because of the <tt>arch=all</tt>
+option. If the graph had been generated on a system running hurd-i386, the
+dependency on <tt>libselinux1-dev</tt> would not have been shown at all.
+</p><p>
+Note that if you generate a graph for an architecture other than your system's,
+the dependency information for some packages may not be available. These packages
+will get a reddish shade.
+</p><p>
+If you'd like to see what you need to install on your own system to build a
+package, use the <tt>-I</tt> option. In that case alternatives will not be
+automatically suppressed.
+</p><p>
+For a nice, though somewhat extreme, example of a graph showing architecture
+conditions, give this a try:
+</p><p>
+<tt><font size="-1">
+$ debtree -b --arch=all --no-recommends --no-conflicts debian-installer
+</font></tt>
+</p>
+
+</td>
+<td width="10" />
+<td width="400">
+
+<p><tt><font size="-1">
+$ debtree -b --arch=all --no-recommends --no-conflicts dpkg
+</font></tt></p>
+<hr />
+<img src="thumbs/usage1.png" alt="Build dependency graph for dpkg" />
+<hr />
+<table>
+<tr>
+<td>Generated .dot file:</td>
+<td><a href="usage1.dot">DOT</a></td>
+</tr><tr>
+<td>Full-sized images:</td>
+<td><a href="usage1.ps" target="_blank">PS</a>&nbsp;|&nbsp;PNG&nbsp;|&nbsp;<a href="usage1.svg" target="_blank">SVG</a></td>
+</tr>
+</table>
+
+</td>
+</tr>
+</tbody>
+</table>
+
+</body>
+</html>

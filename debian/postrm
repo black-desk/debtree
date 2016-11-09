@@ -1,0 +1,26 @@
+#! /bin/sh
+
+set -e
+
+CONFDEST="/etc/debtree"
+
+case $1 in
+    purge)
+	for file in skiplist endlist; do
+		# remove configuration files with dpkg backup extensions
+		for ext in '~' '%' .bak .ucf-new .ucf-old .ucf-dist; do
+			rm -f $CONFDEST/$file$ext
+		done
+
+		# remove the configuration file itself
+		rm -f $CONFDEST/$file
+
+		# clear it out from the ucf database
+		if which ucf >/dev/null; then
+			ucf --purge $CONFDEST/$file
+		fi
+	done
+	;;
+esac
+
+#DEBHELPER#

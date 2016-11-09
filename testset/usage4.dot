@@ -1,0 +1,54 @@
+digraph "apt" {
+	rankdir=LR;
+	node [shape=box];
+	"apt" -> "debian-archive-keyring" [color=blue];
+	"debian-archive-keyring" -> "gnupg" [color=blue];
+	"debian-archive-keyring" [style=filled,fillcolor=honeydew];
+	"libapt-pkg-libc6.7-6-4.6" -> "apt" [dir=back,arrowtail=inv,color=green];
+	"libapt-pkg-libc6.7-6-4.6" [shape=octagon];
+	"reportbug" -> "apt" [color=blue];
+	"kio-apt" -> "apt" [color=blue];
+	"apt-listchanges" -> "apt" [color=blue];
+	"lsb-release" -> "apt";
+	"dwww" -> "apt";
+	"reportbug" [style=filled,fillcolor=azure];
+	"installation-report" -> "reportbug";
+	"installation-report" [style=filled,fillcolor=azure];
+	"kio-apt" [style=filled,fillcolor=azure];
+	"apt-listchanges" [style=filled,fillcolor=azure];
+	"lsb-release" [style=filled,fillcolor=azure];
+	"python-apt" -> "lsb-release" [color=blue];
+	"ia32-libs" -> "lsb-release" [color=blue];
+	"devscripts" -> "lsb-release";
+	"python-apt" [style=filled,fillcolor=azure];
+	"apt-listchanges" -> "python-apt" [color=blue];
+	"ia32-libs" [style=filled,fillcolor=azure];
+	"devscripts" [style=filled,fillcolor=azure];
+	"equivs" -> "devscripts" [color=blue];
+	"pbuilder" -> "devscripts";
+	"equivs" [style=filled,fillcolor=azure];
+	"pbuilder" [style=filled,fillcolor=azure];
+	"dwww" [style=filled,fillcolor=azure];
+	"python-apt" -> "libapt-pkg-libc6.7-6-4.6" [color=blue];
+	"libept0" -> "libapt-pkg-libc6.7-6-4.6" [color=blue];
+	"libapt-pkg-perl" -> "libapt-pkg-libc6.7-6-4.6" [color=blue];
+	"aptitude" -> "libapt-pkg-libc6.7-6-4.6" [color=blue];
+	"apt-utils" -> "libapt-pkg-libc6.7-6-4.6" [color=blue];
+	"libept0" [style=filled,fillcolor=azure];
+	"aptitude" -> "libept0" [color=blue];
+	"aptitude" [style=filled,fillcolor=azure];
+	"tasksel" -> "aptitude" [color=blue];
+	"tasksel" [style=filled,fillcolor=azure];
+	"libapt-pkg-perl" [style=filled,fillcolor=azure];
+	"apt-utils" [style=filled,fillcolor=azure];
+	"debconf" -> "apt-utils";
+	"debconf" [style=filled,fillcolor=azure];
+	"RD_debconf" -> "debconf"  [label="-59-",color=blue];
+	"RD_debconf" -> "debconf"  [label="-10-",color=purple,style=bold];
+	"RD_debconf" [label="...",style="rounded,filled",fillcolor=azure];
+	"apt" [style="setlinewidth(2),filled",fillcolor=honeydew];
+	"gnupg" [shape=diamond];
+	"gnupg" [style=filled,fillcolor=honeydew];
+}
+// Excluded dependencies:
+// libc6 libgcc1 libstdc++6

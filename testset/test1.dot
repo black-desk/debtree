@@ -1,0 +1,21 @@
+digraph "tcpd" {
+	rankdir=LR;
+	node [shape=box];
+	"tcpd" -> "libwrap0" [color=blue,label="(>= 7.6-4~)"];
+	"libwrap0" -> "tcpd";
+	"libwrap0" [style=filled,fillcolor=honeydew];
+	"tcpd" -> "alt1":"debconf" [color=blue,label="(>= 0.5)"];
+	"openbsd-inetd" -> "tcpd" [color=blue];
+	"openbsd-inetd" [style=filled,fillcolor=azure];
+	"RD_libwrap0" -> "libwrap0"  [label="-4-",color=blue];
+	"RD_libwrap0" [label="...",style="rounded,filled",fillcolor=azure];
+	"tcpd" [style="setlinewidth(2),filled",fillcolor=honeydew];
+	alt1 [
+		shape = "record"
+		style = "filled"
+		fillcolor = "honeydew"
+		label = "<debconf> \{debconf\} | <other> ..."
+	]
+}
+// Excluded dependencies:
+// libc6

@@ -1,0 +1,258 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="keywords" lang="en" content="debtree debian package build dependency graph">
+<title>debtree - Package dependency graphs</title>
+</head>
+
+<body>
+<h1>debtree &mdash; package dependency graphs on steroids</h1>
+
+<table>
+<tbody valign="top">
+<tr>
+<td>
+<h2>Introduction</h2>
+
+<p>
+This started with the simple question "how exactly does package X pull in
+package Y when I install it". The only way I knew of was to use
+<tt>aptitude</tt> interactively and just guess which package was the most
+likely culprit.
+</p><p>
+So I set out to create a simple script to recurse through dependencies...
+</p><p>
+Basically this meant building a dependency tree. I'd long wanted to play
+with <tt>dot</tt>, and this seemed like a good opportunity as visualizing
+the trees looked like a nice way to check their correctness.
+</p><p>
+To make a long story short, after the basic functionality had been implemented,
+it turned out to be fairly easy (and irresistible) to extend the functionality
+bit by bit.
+</p><p>
+So now we have a script that can generate dependency graphs in the form of
+<tt>.dot</tt> files that serve as input for <tt>dot</tt> (from the
+<tt>graphviz</tt> package).
+</p><p>
+The commands <tt>apt-cache</tt> and <tt>apt-rdepends</tt> have similar options,
+but <tt>debtree</tt> is a lot more powerful.
+</p>
+
+<h3 id="examples">Examples</h3>
+
+<p>
+The examples below show the different levels of detail that can be
+obtained using <tt>debtree</tt> and explain the graphs. Please view
+them in the indicated order.
+</p><p>
+Note that Postscript viewers may not display some of the larger graphs until
+you zoom out one or more times. I've used <tt>kghostview</tt> and that at
+least always showed the thumbnail correctly.
+</p>
+<ul>
+<li><a href="debconf1.html">debconf</a></li>
+<li><a href="aptitude1.html">aptitude</a></li>
+<li><a href="usage1.html">advanced usage</a></li>
+</ul>
+
+<p>
+Other packages for which (mostly default) graphs have been produced, roughly
+in ascending order of complexity:<br />
+<tt>bind9</tt>, <tt>debmirror</tt>, <tt>gettext</tt>, <tt>iceweasel</tt>,
+<tt>logcheck</tt>, <tt>logrotate</tt>, <tt>mutt</tt>, 
+<tt>mysql-client</tt>, <tt>mysql-server</tt>, <tt>ssh</tt>, <tt>subversion</tt>,
+<tt>debiandoc-sgml</tt>, <tt>exim4</tt>, <tt>cupsys</tt>, <tt>gimp</tt>,
+<tt>lintian</tt>, <tt>apache2</tt>, <tt>wesnoth</tt>, <tt>vlc</tt>.
+</p><p>
+To get usable graphs for some of these, a number of packages have been added
+to the <tt>/etc/debtree/endlist</tt> configuration file. If you try other
+packages, you may need to do the same. Try to add only packages for which it
+is "logical" not to expand the graph any further.
+</p><p>
+Another option is to limit the number of dependency levels (the "depth" of the
+graph) by specifying a maximum depth or to reduce the amount of information
+included in the graph using the available command line options.
+</p>
+
+<h2 id="download">Download</h2>
+
+<p>
+The <tt>debtree</tt> package is available from the
+<a href="http://packages.debian.org/debtree">Debian archive</a> for 'Sqeeze'
+and later. The package for 'Squeeze' can be installed without any problems on
+systems running 'Lenny'.
+</p><p>
+You can also check out the source code from the
+<a href="http://git.debian.org/?p=collab-maint/debtree.git;a=summary">git
+repository</a> using:<br />
+<tt><font size="-1">
+$ git clone git://git.debian.org/collab-maint/debtree.git
+</font></tt>
+</p><p>
+The dependencies are <tt>perl</tt>, <tt>libapt-pkg-perl</tt>,
+<tt>dctrl-tools</tt> and <tt>ucf</tt>; <tt>graphviz</tt> is recommended.
+</p><p>
+Comments to: <a href="mailto:elendil&#37;&#52;&#48;planet&#46;nl">Frans&nbsp;Pop</a>.
+Please submit bugs and patches via the Debian Bug Tracking System.
+</p><p>
+<b>Note</b><br />
+The option to print dependency paths has been dropped in version 0.9.0.
+I doubt anybody used that, and the same is possible using
+'<tt>aptitude&nbsp;why</tt>', which does a better job.
+</p>
+
+<h2 id="issues">Known issues</h2>
+
+<ul>
+<li>
+In some cases graphs can get fairly messy when there are alternatives that
+have very similar dependencies. Good examples are <tt>apache</tt> and
+<tt>wesnoth</tt> (although the last looks to have been cleaned up in Squeeze).
+</li>
+</ul>
+
+<h2 id="future">Future development</h2>
+
+<p>
+There is still a lot of improvement possible. See also the comments in the
+current script.
+</p>
+
+<ul>
+<li>
+Option to generate sub-graphs on separate pages.
+</li><li>
+Accept multiple packages as input to generate combined graphs.
+</li><li>
+Have the tool automatically determine points where to stop recursing or
+where to create sub-graphs on a separate page.
+</li><li>
+Maybe show aggregated package sizes.
+</li>
+</ul>
+
+</td>
+<td width="10" />
+<td width="500">
+
+<pre>
+$ debtree dpkg
+</pre>
+<hr />
+<img src="thumbs/dpkg.png" alt="Dependency graph for dpkg" />
+<hr />
+
+<h3 id="usage">Usage</h3>
+
+<p>
+See the <b>debtree</b>(1) man page for detailed usage information.
+</p>
+
+<p>
+<b>Examples</b>
+</p>
+<ul>
+<li><b>Create a <tt>.dot</tt> file</b><br />
+<tt>$ debtree --with-suggests &lt;package&gt; &gt;out.dot</tt></li>
+<li><b>Create a graph (PNG) from a <tt>.dot</tt> file</b><br />
+<tt>$ dot -T png -o out.png out.dot</tt></li>
+<li><b>Create a graph (Postscript) and view it using <tt>kghostview</tt></b><br />
+<tt>$ debtree &lt;package&gt; | dot -Tps | kghostview - &amp;</tt></li>
+</ul>
+
+<p>
+<b>Option summary</b>
+</p>
+<dl>
+<dt><tt>--show-installed&nbsp;|&nbsp;-I</tt></dt>
+<dd>Show which packages are installed on the system</dd>
+<dt><tt>--show-rdeps&nbsp;|&nbsp;-R</tt></dt>
+<dd>Also show reverse dependencies of the package and any virtual packages it provides</dd>
+<dt><tt>--build-dep&nbsp;|&nbsp;-b</tt></dt>
+<dd>Generate a graph showing build dependencies instead of package dependencies</dd>
+<dt><tt>--arch=&lt;arch&gt;</tt></dt>
+<dd>Specify the architecture (or 'all') for the build dependency graph
+    (default is the architecture of the system)</dd>
+<dt><tt>--with-suggests&nbsp;|&nbsp;-S</tt></dt>
+<dd>Include suggested packages; dependencies of suggested packages are never included</dd>
+<dt><tt>--no-recommends</tt></dt>
+<dd>Don't show recommended packages</dd>
+<dt><tt>--no-alternatives</tt></dt>
+<dd>Only show the first dependency from a set of alternatives (i.e. show what would
+be installed by default)</dd>
+<dt><tt>--no-provides</tt></dt>
+<dd>Do not show virtual packages provided by the requested package</dd>
+<dt><tt>--max-providers=&lt;num&gt;</tt></dt>
+<dd>Limit the display of packages that provide a virtual package (default: 3)</dd>
+<dt><tt>--no-versions</tt></dt>
+<dd>Don't show the versions for versioned dependencies</dd>
+<dt><tt>--no-conflicts</tt></dt>
+<dd>Don't show unversioned conflicts</dd>
+<dt><tt>--versioned-conflicts&nbsp;|&nbsp;-VC</tt></dt>
+<dd>Include versioned conflicts; by default only unversioned conflicts are shown</dd>
+<dt><tt>--max-depth=&lt;num&gt;</tt></dt>
+<dd>Limit the number of levels of dependencies</dd>
+<dt><tt>--rdeps-depth=&lt;num&gt;</tt></dt>
+<dd>The maximum number of levels for reverse dependencies (default: 1)</dd>
+<dt><tt>--max-rdeps=&lt;num&gt;</tt></dt>
+<dd>Limit the display of indirect reverse dependencies (default: 5)</dd>
+<dt><tt>--no-skip</tt></dt>
+<dd>Also display packages that are suppressed by default (e.g. libc6)</dd>
+<dt><tt>--show-all</tt></dt>
+<dd>Generate full dependency tree (recurse for <em>all</em> packages); implies <tt>--no-skip</tt></dd>
+<dt><tt>--rotate&nbsp;|&nbsp;-r</tt></dt>
+<dd>Draw the graph top-town instead of left-to-right</dd>
+<dt><tt>--condense</tt></dt>
+<dd>Condense the graph by merging lines (relationships) between packages</dd>
+<dt><tt>--quiet&nbsp;|&nbsp;-q</tt></dt>
+<dd>Suppress any informational/warning messages</dd>
+<dt><tt>--verbose&nbsp;|&nbsp;-v</tt></dt>
+<dd>Increase verbosity to display debug messages; can be repeated</dd>
+</dl>
+
+<p>
+<b>Configuration</b>
+</p>
+<dl>
+<dt><tt>/etc/debtree/skiplist</tt></dt>
+<dd>Packages that by default will be excluded from dependency graphs.</dd>
+<dt><tt>/etc/debtree/endlist</tt></dt>
+<dd>Packages for which by default no dependencies will be shown on graphs.</dd>
+</dl>
+
+<p>
+See the comments in these files and the examples on these pages for information
+on how they are used. The configuration can be overruled on a per-user basis by
+creating a directory <tt>~/.debtree/</tt> and adding custom versions of these
+files there.
+</p><p>
+Suggestions for packages to add are welcome. Please mail both the command for the
+graph you'd like to reduce and the packages you're proposing to add to the lists.
+</p><p>
+The current list of 'skip' packages is:<br />
+<tt>libc6</tt>, <tt>libgcc1</tt>, <tt>libstdc++6</tt>, <tt>zlib1g</tt>,
+<tt>libx11-6</tt>, <tt>libc6-dev</tt>, <tt>libc-dev</tt>.<br />
+Reason these packages are excluded is that they are so common that including
+them only result in cluttering the graph without adding any real information.
+An option is available that allows to generate a full graph that includes
+these packages.
+</p>
+
+<p>
+<b>Tips</b>
+</p>
+
+<p>
+The <tt>graphviz</tt> suite includes utilities that can be used to manipulate
+graphs after they have been generated. See for example the man pages for
+<tt>prune</tt> and <tt>gvpr</tt>.
+</p>
+
+</td>
+</tr>
+</tbody>
+</table>
+
+</body>
+</html>

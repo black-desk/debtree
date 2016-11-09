@@ -1,0 +1,147 @@
+# This file contains a list of 'end' packages for debtree
+# By default debtree will not display any dependencies of 'end' packages
+# which helps to limit the size and complexity of dependency graphs.
+#
+# This file is ignored when debtree is used to search for dependency paths
+# between two packages.
+#
+# Note: the intention is to eventually make debtree smart enough to
+# automatically limit the size of graphs or to automtically create
+# sub graphs, without the need for manually maintained lists.
+#
+# This file can be overruled on a per-user basis by creating a directory
+# ~/.debtree/ and adding a custom version of this file there.
+# List one or more packages per line (separated by spaces or tabs).
+# Comments after package names are allowed.
+
+# Basic general packages
+sysvinit
+passwd
+gnupg
+procmail
+logrotate
+gettext
+
+# Perl/Python
+perl
+python python-minimal
+python2.4 python2.5 python2.6 python2.7
+
+# Basic Debian packages & package management
+dpkg
+apt
+aptitude
+debconf cdebconf
+module-assistant
+ucf
+
+# Development
+gcc
+c-compiler
+cmake
+subversion
+tla
+git git-core
+mercurial
+
+# Common build dependencies
+debhelper
+debiandoc-sgml
+docbook-utils
+
+# Libraries
+libglib2.0-0
+libsdl1.2debian
+
+# Development libraries
+libsdl1.2-dev
+libssl-dev
+libx11-dev
+zlib1g-dev
+
+# KDE development libraries
+libqt4-dev
+kdebase-workspace-dev
+
+# Common (complex) server applications
+exim4
+postfix
+apache2
+mysql-server mysql-client
+postgresql postgresql-client
+
+# X.Org
+x11-common
+x11-utils
+xfonts-base xfonts-utils
+xbase-clients
+xserver-xorg
+xserver-xorg-video-all xserver-xorg-input-all
+xutils
+
+# Common desktop
+alsa-base
+dictionaries-common
+fontconfig libfontconfig1
+defoma
+dbus
+hal
+libfam0
+libnotify1
+libxine1
+pm-utils
+policykit
+samba-common smbclient libsmbclient
+
+# Java
+default-jre default-jre-headless
+openjdk-6-jre
+java-gcj-compat
+gcj-jre
+gij
+
+# KDE
+libqt-rnt
+libqt3-mt
+libqtcore4
+libqtgui4
+libqt4-designer
+libqt4-sql
+kdebase-runtime
+kdelibs4c2a
+kdelibs5
+libarts1c2a
+libkdepim1a
+libkdepim4
+kdebase-kio-plugins
+kdepim-kio-plugins
+kdesktop
+kcontrol
+kaddressbook
+soprano-daemon
+
+# Gnome
+libgnome2-0
+libgnomeui-0
+libgnomevfs2-0
+libgtk2.0-0
+gconf2
+gksu
+
+# Tex
+tex-common
+tetex-base
+texlive
+texlive-base-bin
+texlive-latex-recommended
+texlive-latex-extra
+texlive-fonts-recommended
+
+# Various
+foomatic-filters
+graphviz
+gs-common gv
+hyperestraier
+openoffice.org-core
+xml-core
+xpdf-reader

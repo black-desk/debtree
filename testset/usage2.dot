@@ -1,0 +1,95 @@
+digraph "clamav" {
+	rankdir=LR;
+	node [shape=box];
+	"clamav" -> "libbz2-1.0" [color=blue];
+	"libbz2-1.0" [style=filled,fillcolor=honeydew];
+	"clamav" -> "libclamav5" [color=blue,label="(>= 0.94.dfsg.2)"];
+	"libclamav5" -> "libbz2-1.0" [color=blue];
+	"libclamav5" -> "libgmp3c2" [color=blue];
+	"libgmp3c2" -> "libgmp3" [color=red];
+	"libgmp3c2" [style=filled,fillcolor=honeydew];
+	"clamav" -> "libgmp3c2" [color=blue];
+	"clamav" -> "alt1" [color=blue];
+	"alt1":"clamav-freshclam" -> "alt2":"debconf" [color=blue,label="(>= 0.5)"];
+	"alt1":"clamav-freshclam" -> "clamav-base" [color=blue,label="(>= 0.94.dfsg.2-1lenny2)"];
+	"clamav-base" -> "alt2":"debconf" [color=blue,label="(>= 0.5)"];
+	"clamav-base" -> "adduser" [color=blue];
+	"adduser" -> "perl-base" [color=blue,label="(>= 5.6.0)"];
+	"perl-base" -> "dpkg" [color=purple,style=bold,label="(>= 1.14.20)"];
+	"perl-base" -> "perl" [style=dotted];
+	"perl-base" [style=filled,fillcolor=honeydew];
+	"adduser" -> "passwd" [color=blue,label="(>= 1:4.0.12)"];
+	"adduser" -> "alt2" [color=blue];
+	"adduser" -> "liblocale-gettext-perl" [style=dotted];
+	"adduser" -> "perl-modules" [style=dotted];
+	"adduser" [style=filled,fillcolor=honeydew];
+	"clamav-base" -> "ucf" [color=blue,label="(>= 0.28)"];
+	"clamav-base" -> "logrotate" [color=blue];
+	"clamav-base" -> "clamav";
+	"alt1":"clamav-freshclam" -> "libbz2-1.0" [color=blue];
+	"alt1":"clamav-freshclam" -> "libclamav5" [color=blue,label="(>= 0.94.dfsg.2)"];
+	"alt1":"clamav-freshclam" -> "libgmp3c2" [color=blue];
+	"alt1":"clamav-freshclam" -> "debianutils" [color=blue,label="(>= 1.6)"];
+	"debianutils" [style=filled,fillcolor=honeydew];
+	"alt1":"clamav-freshclam" -> "ucf" [color=blue,label="(>= 0.28)"];
+	"alt1":"clamav-freshclam" -> "logrotate" [color=blue];
+	"alt1":"clamav-freshclam" -> "lsb-base" [color=blue,label="(>= 3.2-13)"];
+	"lsb-base" -> "sed" [color=blue];
+	"sed" [style=filled,fillcolor=honeydew];
+	"lsb-base" -> "ncurses-bin" [color=blue];
+	"ncurses-bin" -> "libncurses5" [color=purple,style=bold,label="(>= 5.6+20071006-3)"];
+	"libncurses5" -> "libgpm2";
+	"libgpm2" -> "gpm" [style=dotted];
+	"libgpm2" [style=filled,fillcolor=honeydew];
+	"libncurses5" [style=filled,fillcolor=honeydew];
+	"ncurses-bin" -> "ncurses" [color=red];
+	"ncurses-bin" -> "tput" [color=red];
+	"ncurses-bin" [style=filled,fillcolor=honeydew];
+	"lsb-base" [style=filled,fillcolor=honeydew];
+	"alt1":"clamav-freshclam" -> "clamav-docs" [style=dotted];
+	"alt1":"clamav-freshclam" -> "alt1":"clamav-data" [color=red];
+	"alt1":"clamav-freshclam" -> "libclamav2" [color=red];
+	"alt1":"clamav-freshclam" -> "libclamav3" [color=red];
+	"alt1":"clamav-data" -> "alt2":"debconf" [color=blue,label="(>= 0.5)"];
+	"alt1":"clamav-data" -> "alt1":"clamav-freshclam" [color=red];
+	"clamav" -> "unrar" [style=dotted,label="(>= 3.0-1)"];
+	"clamav" -> "lha" [style=dotted];
+	"clamav" -> "clamav-docs" [style=dotted];
+	"clamav" -> "clamav-base";
+	"clamav" [style="setlinewidth(2)"]
+	"libclamav3" [style=filled,fillcolor=oldlace];
+	"libgmp3" [style=filled,fillcolor=oldlace];
+	"ncurses" [style=filled,fillcolor=oldlace];
+	"tput" -> "ncurses-bin" [dir=back,arrowtail=inv,color=green];
+	"tput" [shape=octagon];
+	alt1 [
+		shape = "record"
+		label = "<clamav-freshclam> clamav-freshclam | <clamav-data> clamav-data"
+	]
+	alt2 [
+		shape = "record"
+		style = "filled"
+		fillcolor = "honeydew"
+		label = "<debconf> \{debconf\} | <other> ..."
+	]
+	"clamav-docs" [shape=diamond];
+	"dpkg" [shape=diamond];
+	"dpkg" [style=filled,fillcolor=honeydew];
+	"gpm" [shape=diamond];
+	"lha" [shape=diamond];
+	"liblocale-gettext-perl" [shape=diamond];
+	"liblocale-gettext-perl" [style=filled,fillcolor=honeydew];
+	"logrotate" [shape=diamond];
+	"logrotate" [style=filled,fillcolor=honeydew];
+	"passwd" [shape=diamond];
+	"passwd" [style=filled,fillcolor=honeydew];
+	"perl" [shape=diamond];
+	"perl" [style=filled,fillcolor=honeydew];
+	"perl-modules" [shape=diamond];
+	"perl-modules" [style=filled,fillcolor=honeydew];
+	"ucf" [shape=diamond];
+	"ucf" [style=filled,fillcolor=honeydew];
+	"unrar" [shape=diamond];
+}
+// Excluded dependencies:
+// libc6 zlib1g

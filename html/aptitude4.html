@@ -1,0 +1,75 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>debtree - Package dependency graphs</title>
+</head>
+
+<body>
+<h1>debtree &mdash; package dependency graphs on steroids</h1>
+
+<table>
+<tbody valign="top">
+<tr>
+<td>
+
+<h3><a href="index.html">Introduction</a></h3>
+
+<h3>Example: aptitude</h3>
+
+<ol start="0">
+<li><a href="aptitude0.html">Graph from apt-cache (for comparison)</a></li>
+<li><a href="aptitude1.html">Basic graph (only hard dependencies and conflicts)</a></li>
+<li><a href="aptitude2.html">Basic graph with Recommends</a></li>
+<li><a href="aptitude3.html">Basic graph with Recommends and Suggests</a></li>
+<li><b>Basic graph with Recommends and showing alternatives</b></li>
+<li><a href="aptitude5.html">Default graph (showing Recommends, alternatives and versions)</a></li>
+<li><a href="aptitude6.html">Default graph with Suggests</a></li>
+<li><a href="aptitude7.html">Default graph with Suggests and versioned Conflicts</a></li>
+<li><a href="aptitude8.html">Default graph (rotated)</a></li>
+</ol>
+<hr />
+
+<p>
+Various dependencies that can be satisfied by multiple packages are shown.
+</p><p>
+<tt>aptitude-doc</tt> is a virtual package that is provided by various
+(unspecified) other packages.
+</p><p>
+<tt>libxml-simple-perl</tt> has a dependencies with one alternatives that
+has a special indicator.
+The square brackets ("[...]") for <tt>libxml-sax-expat-perl</tt> indicates
+that that package is also shown separately elsewhere in the graph (and its
+dependencies will be shown from that separate instance).
+Braces ("{...}") are used to indicate that the dependencies of an alternative
+are not shown in the graph.
+</p>
+
+</td>
+<td width="10" />
+<td width="400">
+
+<p><tt><font size="-1">
+$ debtree --no-versions aptitude
+</font></tt></p>
+<hr />
+<img src="thumbs/aptitude4.png" alt="Dependency graph for aptitude" />
+<hr />
+<table>
+<tr>
+<td>Generated .dot file:</td>
+<td><a href="aptitude4.dot" target="_blank">DOT</a></td>
+</tr><tr>
+<td>Full-sized images:</td>
+<td><a href="aptitude4.ps" target="_blank">PS</a>&nbsp;|&nbsp;<a href="aptitude4.png" target="_blank">PNG</a>&nbsp;|&nbsp;<a href="aptitude4.svg" target="_blank">SVG</a></td>
+</tr>
+</table>
+<p><font size="-1"><a href="debconf4.html">Equivalent graph for debconf</a></font></p>
+
+</td>
+</tr>
+</tbody>
+</table>
+
+</body>
+</html>

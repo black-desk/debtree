@@ -1,0 +1,12 @@
+ToDo list for debtree
+---------------------
+* add "usage" function and --version and --help options
+* this code really needs a testsuite as regressions are many and subtle;
+  comparing the .dot output with expected would be simpler if a fixed
+  status database was used
+* complete conversion to perl by using libapt-pkg-perl instead of calls
+  to dctrl-tools
+* automatic limiting
+* automatically split graphs over multiple subgraphs (which dot will place
+  on separate pages)
+* identify transitional packages
