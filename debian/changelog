@@ -5,6 +5,7 @@ debtree (1.0.11) UNRELEASED; urgency=medium
     - Update to use debhelper-compat (= 12)
     - Update VCS fields to use salsa.debian.org
   * debian/copyright: Update to DEP-5 format.
+  * Remove debian/source compression options.
 
  -- Josue Ortega <josue@debian.org>  Sat, 13 Apr 2019 14:41:08 -0600
 
