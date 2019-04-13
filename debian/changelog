@@ -1,4 +1,4 @@
-debtree (1.0.11) UNRELEASED; urgency=medium
+debtree (1.0.11) experimental; urgency=medium
 
   * New maintainer (Closes: #925003).
   * debian/control:
@@ -11,7 +11,7 @@ debtree (1.0.11) UNRELEASED; urgency=medium
   * Add debian CI Tests.
   * Update versions at packages endlist.
 
- -- Josue Ortega <josue@debian.org>  Sat, 13 Apr 2019 14:41:08 -0600
+ -- Josue Ortega <josue@debian.org>  Sat, 13 Apr 2019 15:23:35 -0600
 
 debtree (1.0.10+nmu1) unstable; urgency=medium
 
