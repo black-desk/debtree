@@ -91,7 +91,7 @@ debtree (1.0.4) unstable; urgency=low
 debtree (1.0.3) unstable; urgency=low
 
   * Take the highest available version for uninstalled packages instead of the
-    lowest. Thanks to Thomas Wentzel for the report and patch. Closes: #554719. 
+    lowest. Thanks to Thomas Wentzel for the report and patch. Closes: #554719.
   * Add a few more X.Org-related packages to the end list.
 
  -- Frans Pop <fjp@debian.org>  Sat, 07 Nov 2009 03:19:16 +0100
