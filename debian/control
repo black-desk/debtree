@@ -4,9 +4,9 @@ Priority: optional
 Maintainer: Josue Ortega <josue@debian.org>
 Build-Depends: debhelper-compat(= 12)
 Standards-Version: 3.9.2
-Homepage: http://collab-maint.alioth.debian.org/debtree/
-Vcs-Git: git://git.debian.org/collab-maint/debtree.git
-Vcs-Browser: http://git.debian.org/?p=collab-maint/debtree.git
+Homepage: https://salsa.debian.org/debian/debtree
+Vcs-Git: https://salsa.debian.org/debian/debtree.git
+Vcs-Browser: https://salsa.debian.org/debian/debtree
 
 Package: debtree
 Architecture: all

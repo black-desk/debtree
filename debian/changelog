@@ -1,8 +1,10 @@
 debtree (1.0.11) UNRELEASED; urgency=medium
 
   * New maintainer (Closes: #925003).
-  * debian/control: Update to use debhelper-compat (= 12)
- 
+  * debian/control:
+    - Update to use debhelper-compat (= 12)
+    - Update VCS fields to use salsa.debian.org
+
  -- Josue Ortega <josue@debian.org>  Sat, 13 Apr 2019 14:41:08 -0600
 
 debtree (1.0.10+nmu1) unstable; urgency=medium
