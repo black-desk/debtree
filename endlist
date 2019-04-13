@@ -21,11 +21,13 @@ gnupg
 procmail
 logrotate
 gettext
+systemd
 
 # Perl/Python
 perl
 python python-minimal
 python2.4 python2.5 python2.6 python2.7
+python3.7 python3.8 python3.6
 
 # Basic Debian packages & package management
 dpkg
@@ -61,6 +63,7 @@ zlib1g-dev
 
 # KDE development libraries
 libqt4-dev
+libqt5-dev
 kdebase-workspace-dev
 
 # Common (complex) server applications
@@ -81,6 +84,7 @@ xutils
 
 # Common desktop
 alsa-base
+pulseaudio
 dictionaries-common
 fontconfig libfontconfig1
 defoma
@@ -96,6 +100,13 @@ samba-common smbclient libsmbclient
 # Java
 default-jre default-jre-headless
 openjdk-6-jre
+openjdk-7-jre
+openjdk-8-jre
+openjdk-10-jre
+openjdk-11-jre
+openjdk-12-jre
+openjdk-13-jre
+
 java-gcj-compat
 gcj-jre
 gij

@@ -9,6 +9,7 @@ debtree (1.0.11) UNRELEASED; urgency=medium
   * Bump Standards-Version to 4.3.0:
     - debian/control: Document Rules-Requires-Root field.
   * Add debian CI Tests.
+  * Update versions at packages endlist.
 
  -- Josue Ortega <josue@debian.org>  Sat, 13 Apr 2019 14:41:08 -0600
 
