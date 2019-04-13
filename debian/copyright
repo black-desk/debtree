@@ -10,7 +10,7 @@ Files: debian/*
 Copyright: Frans Pop <fjp@debian.org> 
            Anibal Monsalve <anibal@debian.org>
            2019 Josue Ortega <josue@debian.org>
-License GPL-2.0+
+License: GPL-2.0+
 
 License: GPL-2.0+
  This package is free software; you can redistribute it and/or modify
