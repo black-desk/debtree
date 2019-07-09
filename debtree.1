@@ -210,6 +210,14 @@ This means that dependencies that by default are not included in graphs, will
 now be shown, but their dependencies will not. See also the section CONFIGURATION
 below.
 
+.IP "\fB\-\-skiplist\fP=\fIfile\fP"
+File with the list of custom \fIskip packages\fP. This overrides global skiplist configuration.
+See also the section CONFIGURATION.
+
+.IP "\fB\-\-endlist\fP=\fIfile\fP"
+File with the list of custom \fIend packages\fP. This overrides global endlist configuration.
+See also the section CONFIGURATION
+
 .IP "\fB\-\-show\-all\fP"
 Display the full dependency tree.
 
@@ -270,7 +278,8 @@ just too big or complex.
 If a list is present under the HOME directory of the user, that file will be used
 instead of the default file in /etc/debtree/.
 .PP
-See also the options \-\-no\-skip, \-\-show\-all and \-\-max\-depth.
+See also the options \-\-no\-skip, \-\-show\-all and \-\-max\-depth, \-\-skiplist,
+\-\-endlist.
 
 .SH EXAMPLES
 Below are some basic usage examples for \fBdebtree\fP.

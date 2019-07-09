@@ -1,3 +1,11 @@
+debtree (1.1.0) UNRELEASED; urgency=medium
+
+  * Upload to unstable.
+  * Add skiplist and endlist command line options. Thanks to
+    Matthias Beyer <mail@beyermatthias.de> for the patch.
+
+ -- Josue Ortega <josue@debian.org>  Mon, 08 Jul 2019 19:20:14 -0600
+
 debtree (1.0.11) experimental; urgency=medium
 
   * New maintainer (Closes: #925003).

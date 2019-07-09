@@ -58,6 +58,8 @@ my $show_all = 0;
 my $do_rotate = 0;
 my $do_condense = 0;
 my $ARCH="";
+my $endlist="";
+my $skiplist="";
 my $download_size=0;
 my $total_size=0;
 
@@ -93,6 +95,8 @@ GetOptions(
 	'rotate|r'			=> \$do_rotate,
 	'condense'			=> \$do_condense,
 	'arch=s'			=> \$ARCH,
+	'endlist=s'         => \$endlist,
+	'skiplist=s'        => \$skiplist,
 	'quiet|q'			=> \$quiet,
 	'verbose|v+'			=> \$verbose,
 ) or usage;
@@ -1156,24 +1160,40 @@ sub process_package {
 # - "end" packages are displayed and marked as such, but we don't recurse
 #   to determine their dependencies
 if (! $show_all) {
-	my $file;
-	for $file ("$HOME/.debtree/skiplist", "/etc/debtree/skiplist") {
-		if (-r $file) {
-			info(3, "Using list of 'skip' packages from $file");
-			if (! $no_skip) {
-				import_list($file, "skip");
-			} else {
-				# Change skip packages to end packages
-				import_list($file, "end");
+	if (-r $skiplist) {
+        info(3, "Using list of 'skip' packages from $skiplist");
+		if (! $no_skip){
+			import_list($skiplist, "skip");
+		} else {
+			# Change skip packages to end packages
+			import_list($skiplist, "end");
+		}
+	} else {
+		my $file;
+		for $file ("$HOME/.debtree/skiplist", "/etc/debtree/skiplist") {
+			if (-r $file) {
+				info(3, "Using list of 'skip' packages from $file");
+				if (! $no_skip) {
+					import_list($file, "skip");
+				} else {
+					# Change skip packages to end packages
+					import_list($file, "end");
+				}
+				last;
 			}
-			last;
 		}
 	}
-	for $file ("$HOME/.debtree/endlist", "/etc/debtree/endlist") {
-		if (-r $file) {
-			info(3, "Using list of 'end' packages from $file");
-			import_list($file, "end");
-			last;
+	if (-r $endlist) {
+		info(3, "Using list of 'end' packages from $endlist");
+		import_list($endlist, "end");
+	} else {
+		my $file;
+		for $file ("$HOME/.debtree/endlist", "/etc/debtree/endlist") {
+			if (-r $file) {
+				info(3, "Using list of 'end' packages from $file");
+				import_list($file, "end");
+				last;
+			}
 		}
 	}
 }
