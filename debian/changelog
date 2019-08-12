@@ -1,3 +1,9 @@
+debtree (1.1.1) UNRELEASED; urgency=medium
+
+  * Add salsa-ci configuration file
+
+ -- Josue Ortega <josue@debian.org>  Sun, 11 Aug 2019 21:04:03 -0600
+
 debtree (1.1.0) unstable; urgency=medium
 
   * Upload to unstable.
